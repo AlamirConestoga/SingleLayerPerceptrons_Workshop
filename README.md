@@ -1,152 +1,160 @@
-# Single-Layer Perceptrons Workshop
+# Single Layer Perceptrons Workshop
 
-**Course:** CSCN8010 — Foundations of Machine Learning  
-**Topic:** Introduction to Artificial Neural Networks (ANNs) and Single-Layer Perceptrons  
-**Environment:** Python, Jupyter Notebook / Visual Studio Code, PyTorch, TensorFlow
+## Project Overview
 
-## Workshop overview
+This project was completed as part of the Foundations of Machine Learning Frameworks course at Conestoga College.
 
-This workshop introduces artificial neural networks through the biological-neuron analogy and builds toward implementing and interpreting single-layer perceptrons. You will examine how inputs, weights, biases, and activation functions produce predictions, and how gradient descent adjusts model parameters during training.
+The workshop explores the fundamentals of Artificial Neural Networks (ANNs), including how artificial neurons process inputs, apply weights and biases, and use activation functions to generate predictions.
 
-You will use the workshop notebook, **`SingleLayerPerceptrons_Workshop.ipynb`** (or the version provided in class), to run examples, explain their outputs, and complete coding challenges.
+We worked as a group to complete the workshop activities, implement the coding challenges, and understand how gradient descent and backpropagation help neural networks learn.
 
-## Learning outcomes
+## Workshop Objectives
 
-By the end of the workshop, you should be able to:
+The main objectives of this workshop are:
 
-1. Describe the relationship—and important differences—between biological neurons and artificial neurons.
-2. Calculate a weighted sum, add a bias, and apply an activation function.
-3. Compare identity, binary step, sigmoid, tanh, and ReLU activations.
-4. Implement and test simple perceptrons using PyTorch and TensorFlow.
-5. Explain how perceptrons implement binary logic, including AND, OR, and AND-NOT.
-6. Interpret a linear decision boundary and recognize the limits of a single-layer perceptron.
-7. Compute a prediction and loss, then explain gradient descent, learning rate, and backpropagation.
+- Understand the relationship between biological neurons and artificial neurons.
+- Explore five activation functions: Identity, Binary Step, Sigmoid, Tanh, and ReLU.
+- Implement single-layer perceptrons using PyTorch and TensorFlow.
+- Demonstrate AND, OR, and inhibitory logic gates.
+- Understand weighted sums, biases, and activation functions.
+- Implement ANN prediction examples and coding challenges.
+- Understand loss calculation, gradient descent, and backpropagation.
 
-## Workshop activities
+## Workshop Activities
 
-### Part 1 — Foundations of ANNs
+### 1. ANN Foundations and Activation Functions
 
-Explore the biological-neuron analogy, electrical impulses, the mathematical neuron model, and activation functions. Run the activation-function visualization and compare their outputs.
+We studied how artificial neurons are inspired by biological neurons.
 
-### Part 2 — Single-layer perceptrons
+An artificial neuron calculates a weighted sum of its inputs, adds a bias, and applies an activation function.
 
-Work through the notebook's examples of weighted inputs and bias. Test all binary input combinations for the logic-gate exercises, including inhibitory connections (`A AND NOT B`). Compare the PyTorch and TensorFlow implementations and explain the results.
+We explored and visualized five activation functions using NumPy and Matplotlib:
 
-### Part 3 — Linear classification
+- Identity
+- Binary Step
+- Sigmoid
+- Tanh
+- ReLU
 
-Explain how the equation `z = w·x + b` defines a decision boundary at `z = 0`. Relate the boundary to the perceptron's classification outputs and discuss why a single-layer perceptron cannot solve XOR without additional features or layers.
+### 2. Single-Layer Perceptron Logic
 
-### Part 4 — Canada's Wonderland prediction
+We implemented perceptron models for the following logic cases:
 
-Use three binary inputs—weather, ticket queue, and health—to model a decision about visiting Canada's Wonderland. With the example inputs `x = [1, 0, 1]`, weights `w = [5, 2, 4]`, and bias `b = -3`, calculate the raw score and sigmoid output using PyTorch.
+- C = A
+- AND gate
+- OR gate
+- Inhibitory logic: A AND NOT B
 
-Compare the predicted output with an observed target, calculate a loss, and inspect how gradients update the weights. **Distinguish the raw score `z = 6` from the activated prediction `sigmoid(6) ≈ 0.9975`: they are not interchangeable when computing classification error.**
+We tested all required binary input combinations and compared the results using PyTorch and TensorFlow.
 
-### Part 5 — Interactive exploration
+### 3. Canada's Wonderland ANN Example
 
-Experiment with [TensorFlow Playground](https://playground.tensorflow.org/) to see how network architecture, activation functions, input features, and learning rate affect classification.
+We explored a single-neuron prediction example to decide whether to visit Canada's Wonderland.
 
-## Coding challenges
+The model uses three inputs:
 
-Complete the challenges identified in the notebook. At minimum, document your findings for these investigations:
+- Weather
+- Ticket queue
+- Health
 
-1. **Activation functions:** Change the input range or activation function and explain how the output changes.
-2. **Logic gates:** Verify all four binary input combinations and explain how a negative weight inhibits activation.
-3. **Decision boundary:** Change one weight or the bias, and explain how the separating line moves.
-4. **Wonderland prediction:** Change one input at a time and compare the raw score, sigmoid prediction, and final decision.
-5. **Gradient descent:** Compare weight updates using different learning rates. Explain the roles of `loss.backward()` and the parameter update step, and how backpropagation uses the chain rule.
+We calculated the weighted sum, applied sigmoid activation, and examined the prediction and error.
 
-Keep your code, results, and short explanations together in the notebook. Where a challenge asks for a mathematical explanation, use readable LaTeX in Markdown cells.
+### 4. Movie Decision Perceptron Challenge
 
-## Set up your environment
+We implemented a single-layer perceptron to predict whether to go to the movies.
 
-Use a supported Python version compatible with the selected PyTorch and TensorFlow releases. Create and activate a virtual environment, then install the dependencies:
+The model considers three binary inputs:
 
-```bash
-python -m venv .venv
-```
+- Weather
+- Company
+- Proximity to the theatre
 
-**Windows (PowerShell):**
+We selected weights and a bias, applied the binary step activation function, and tested all eight possible input combinations.
 
-```powershell
-.venv\Scripts\Activate.ps1
-```
+### 5. Prostate Cancer ANN Prediction Challenge
 
-**macOS / Linux:**
+We implemented the prostate cancer prediction example based on the Deep Learning Fundamentals class slides.
 
-```bash
-source .venv/bin/activate
-```
+The model uses PSA as its input, calculates a weighted sum, and applies the sigmoid activation function.
 
-Install packages:
+We also demonstrated:
 
-```bash
-python -m pip install -r requirements.txt
-```
+- Prediction interpretation using a threshold of 0.5.
+- Squared-error loss calculation using an assumed training label.
+- Gradient calculation using PyTorch autograd.
+- Weight and bias updates using gradient descent.
+- Comparison of predictions and loss before and after the update.
 
-A suitable starting `requirements.txt` is:
+This example is for educational purposes and is not a clinically validated diagnostic model.
 
-```text
-numpy
-matplotlib
-torch
-tensorflow
-notebook
-ipykernel
-```
+### 6. Gradient Descent and Backpropagation
 
-Register the environment as a Jupyter kernel if needed:
+We studied how neural networks learn by minimizing prediction errors.
 
-```bash
-python -m ipykernel install --user --name slp-workshop --display-name "Python (SLP Workshop)"
-```
+The workshop demonstrates how gradients are calculated through backpropagation and how gradient descent updates weights and biases using a learning rate.
 
-Open the notebook in Visual Studio Code with the Python and Jupyter extensions, select the environment's kernel, and run all cells in order. If a framework is unavailable on your platform, document the limitation and the steps you attempted.
+We also explored training results and visualizations showing changes in the model parameters and loss.
 
-## Repository structure
+## Technologies Used
 
-Create **your own GitHub repository**. A suggested structure is:
+- Python
+- Jupyter Notebook
+- NumPy
+- Matplotlib
+- PyTorch
+- TensorFlow
+
+## Project Structure
 
 ```text
 SingleLayerPerceptrons_Workshop/
+│
+├── SingleLayerPerceptrons_Workshop.ipynb
+├── MinimalSingleSayerPerceptronTrainingLoop.py
 ├── README.md
 ├── requirements.txt
-├── .gitignore
-├── SingleLayerPerceptrons_Workshop.ipynb
 └── images/
-    ├── ANN_1.png
-    ├── ANN_2.png
-    ├── ANN_3.png
-    ├── ANN_4.png
-    ├── ANN_5.png
-    └── ANN_6.png
+    └── Workshop diagrams and illustrations
 ```
 
-Include any other images referenced by the notebook. Preserve relative paths such as `./images/ANN_1.png` so the figures display correctly when the repository is cloned. If your supplied notebook has a version suffix, you may keep that filename and document it here.
+## How to Run the Project
 
-Your `README.md` must be **your own**, adapted to describe your work rather than merely copying these instructions. Include the workshop objective, completed activities, noteworthy results, challenges attempted, and instructions for reproducing the notebook.
+1. Clone the repository:
 
-Your `requirements.txt` must list the Python packages required to run your submitted notebook. Do not commit your virtual environment, secrets, or large temporary files. Include `.venv/`, `__pycache__/`, and `.ipynb_checkpoints/` in `.gitignore`.
+   ```bash
+   git clone https://github.com/AlamirConestoga/SingleLayerPerceptrons_Workshop.git
+   ```
 
-## Submission instructions
+2. Navigate to the project folder:
 
-1. Create a new repository under **your own GitHub account** (suggested name: `SingleLayerPerceptrons_Workshop`).
-2. Add your completed notebook, your own `README.md`, `requirements.txt`, and the images or other assets the notebook uses.
-3. Run the notebook **from top to bottom** using a fresh kernel. Fix errors and save the notebook with its outputs where practical.
-4. Commit and push your work to GitHub.
-5. Confirm that your repository displays the README and that the notebook and images are accessible.
-6. Submit the **GitHub repository URL** through the submission channel specified in class.
+   ```bash
+   cd SingleLayerPerceptrons_Workshop
+   ```
 
-### Final submission checklist
+3. Install the required libraries:
 
-- [ ] Repository belongs to my GitHub account and is accessible for review.
-- [ ] Completed Jupyter notebook is included.
-- [ ] `README.md` describes my work and how to reproduce it.
-- [ ] `requirements.txt` lists all required packages.
-- [ ] Referenced images are included and relative paths work.
-- [ ] Code cells run in order without avoidable errors.
-- [ ] Coding challenges and talking-point explanations are completed.
-- [ ] Results and mathematical explanations agree with the code.
-- [ ] No credentials, virtual environment folders, or unnecessary generated files are committed.
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
 
-**Submission:** Your GitHub repository URL. Follow the deadline and any additional requirements announced in class.
+4. Open `SingleLayerPerceptrons_Workshop.ipynb` in VS Code or Jupyter Notebook.
+
+5. Select a Python environment containing the required libraries.
+
+6. Run the notebook cells in order and review the predictions, explanations, and visualizations.
+
+The `images` folder and training-loop Python script must remain in the project folder for the notebook to work correctly.
+
+## GitHub Repository
+
+https://github.com/AlamirConestoga/SingleLayerPerceptrons_Workshop
+
+## Conclusion
+
+Through this workshop, we learned how a single artificial neuron makes predictions using inputs, weights, bias, and activation functions.
+
+The logic gate examples helped us understand how perceptrons make binary decisions. The movie and prostate cancer challenges allowed us to apply these concepts to prediction problems.
+
+We also learned how gradient descent and backpropagation are used to adjust model parameters and reduce prediction errors.
+
+Overall, this workshop helped us build a foundation for understanding artificial neural networks and their training process.
